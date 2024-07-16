@@ -128,9 +128,11 @@ const runtimeConfig = useRuntimeConfig()
 
 const { initDataUnsafe } = useWebApp()
 
+const userId = initDataUnsafe?.user?.id
+
 const toast = useToast()
 
-const url = `${runtimeConfig.public.apiBaseUrl}/users/${initDataUnsafe?.user?.id}/`
+const url = `${runtimeConfig.public.apiBaseUrl}/users/${userId}/`
 const { data: user, status } = await useFetch<User>(url)
 
 const isSavingRequestPending = ref<boolean>(false)
