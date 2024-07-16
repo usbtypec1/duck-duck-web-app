@@ -41,7 +41,9 @@
             <p>
               <span class="font-semibold">Имя пользователя:</span> {{ fullname }}</p>
             <p>
-              <span class="font-semibold">Username:</span> <template v-if="username">@</template>{{ username }}
+              <span class="font-semibold">Username:</span>
+              <template v-if="username">@</template>
+              {{ username }}
             </p>
           </section>
         </div>
@@ -132,7 +134,6 @@ const url = `${runtimeConfig.public.apiBaseUrl}/users/${userId}/`
 const { data: user, status } = await useFetch<User>(url)
 
 const isSavingRequestPending = ref<boolean>(false)
-
 
 const fullname = ref<string>()
 const username = ref<string | null>()
