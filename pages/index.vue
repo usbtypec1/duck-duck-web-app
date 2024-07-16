@@ -119,18 +119,18 @@
 </template>
 
 <script setup lang="ts">
+import { useWebApp } from 'vue-tg'
 import { useToast } from 'primevue/usetoast'
-import { userIdKey } from '~/utils/dependencies'
 import type { User } from '~/types/users'
 import type { ServerResponse } from '~/types/responses'
 
 const runtimeConfig = useRuntimeConfig()
 
+const { initDataUnsafe } = useWebApp()
+
 const toast = useToast()
 
-const userId = inject(userIdKey)
-
-const url = `${runtimeConfig.public.apiBaseUrl}/users/${userId}/`
+const url = `${runtimeConfig.public.apiBaseUrl}/users/${initDataUnsafe?.user?.id}/`
 const { data: user, status } = await useFetch<User>(url)
 
 const isSavingRequestPending = ref<boolean>(false)
