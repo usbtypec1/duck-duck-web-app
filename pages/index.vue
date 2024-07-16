@@ -75,6 +75,16 @@
               :disabled="isSavingRequestPending"
             />
           </div>
+
+          <div class="flex flex-col">
+            <label for="born-on" class="font-semibold">Дата рождения</label>
+            <DatePicker
+              input-id="born-on"
+              v-model="bornOn"
+              dateFormat="dd/mm/yy"
+            />
+          </div>
+
         </section>
       </Fieldset>
 
@@ -132,6 +142,7 @@ const patronymic = ref<string | null>()
 const canBeAddedToContacts = ref<boolean>()
 const canReceiveNotifications = ref<boolean>()
 const profilePhotoUrl = ref<string | null>()
+const bornOn = ref<Date | null>()
 
 const handleUserResponse = (user: User): void => {
   fullname.value = user.fullname
@@ -142,10 +153,20 @@ const handleUserResponse = (user: User): void => {
   canReceiveNotifications.value = user.can_receive_notifications
   patronymic.value = user.patronymic
   profilePhotoUrl.value = user.profile_photo_url
+  bornOn.value = user.born_on ? new Date(user.born_on) : null
+}
+
+const formatDate = (date: Date): string => {
+  const day = date.getDate().toString().padStart(2, '0')
+  const month = (date.getMonth() + 1).toString().padStart(2, '0')
+  const year = date.getFullYear().toString()
+
+  return `${year}-${month}-${day}`
 }
 
 const onSaveUser = async () => {
   const url = `${runtimeConfig.public.apiBaseUrl}/users/`
+
   isSavingRequestPending.value = true
   try {
     const data: ServerResponse<User> = await $fetch(url, {
@@ -159,6 +180,7 @@ const onSaveUser = async () => {
         patronymic: patronymic.value || '-',
         can_be_added_to_contacts: canBeAddedToContacts.value,
         can_receive_notifications: canReceiveNotifications.value,
+        born_on: bornOn.value ? formatDate(bornOn.value) : undefined,
       },
     })
 
