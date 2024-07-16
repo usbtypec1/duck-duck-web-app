@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@primevue/themes": "^4.0.0",
-    "primevue": "^4.0.0"
+    "primevue": "^4.0.0",
+    "vue-tg": "^0.6.1"
   }
 }
