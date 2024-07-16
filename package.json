@@ -10,8 +10,13 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "^1.0.3",
+    "@primevue/nuxt-module": "^4.0.0",
     "nuxt": "^3.8.2",
     "vue": "^3.3.8",
     "vue-router": "^4.2.5"
+  },
+  "dependencies": {
+    "@primevue/themes": "^4.0.0",
+    "primevue": "^4.0.0"
   }
 }
