@@ -11,7 +11,7 @@ import { userIdKey } from '~/utils/dependencies'
 
 const { initDataUnsafe } = useWebApp()
 
-const userId = initDataUnsafe?.user?.id || 896678539
+const userId = initDataUnsafe?.user?.id
 
 provide(userIdKey, userId)
 </script>

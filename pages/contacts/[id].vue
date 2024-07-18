@@ -65,10 +65,13 @@
 
 <script setup lang="ts">
 import { useToast } from 'primevue/usetoast'
+import { useConfirm } from 'primevue/useconfirm'
 import type { Contact } from '~/types/contacts'
 
 const { params } = useRoute()
+
 const toast = useToast()
+const confirm = useConfirm()
 
 const runtimeConfig = useRuntimeConfig()
 const url = `${runtimeConfig.public.apiBaseUrl}/contacts/${params.id}`
@@ -80,6 +83,46 @@ const publicName = ref<string>()
 const isHidden = ref<boolean>()
 
 const isRequestPending = ref<boolean>(false)
+
+const onDeleteContact = (): void => {
+  confirm.require({
+    header: 'Подтверждение',
+    message: 'Вы уверены, что хотите удалить контакт?',
+    accept: deleteContact,
+    acceptProps: {
+      label: 'Удалить',
+      severity: 'danger',
+    },
+    rejectProps: {
+      label: 'Отмена',
+      severity: 'secondary',
+    },
+  })
+}
+
+const deleteContact = async (): Promise<void> => {
+  isRequestPending.value = true
+  try {
+    await $fetch<null>(url, { method: 'DELETE' })
+    toast.add({
+      severity: 'warn',
+      summary: 'Успешно',
+      detail: 'Контакт удален',
+      life: 3000,
+    })
+    await navigateTo({ name: 'contacts' })
+  } catch (error) {
+    console.error(error)
+    toast.add({
+      severity: 'error',
+      summary: 'Ошибка',
+      detail: 'Не удалось удалить контакт',
+      life: 3000,
+    })
+  } finally {
+    isRequestPending.value = false
+  }
+}
 
 const onSaveContact = async (): Promise<void> => {
   isRequestPending.value = true

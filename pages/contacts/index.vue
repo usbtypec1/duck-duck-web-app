@@ -1,8 +1,6 @@
 <template>
   <div>
-    <section
-      v-for="contact in contacts"
-    >
+    <section v-for="contact in contacts">
       <NuxtLink :to="{ name: 'contacts-id', params: { id: contact.id } }">
         <div class="flex cursor-pointer">
           <div class="basis-1/4">
