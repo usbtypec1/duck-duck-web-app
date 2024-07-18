@@ -4,7 +4,7 @@
       v-for="contact in contacts"
     >
       <NuxtLink :to="{ name: 'contacts-id', params: { id: contact.id } }">
-        <div class="flex">
+        <div class="flex cursor-pointer">
           <div class="basis-1/4">
             <NuxtImg
               v-if="contact.to_user.profile_photo_url"
