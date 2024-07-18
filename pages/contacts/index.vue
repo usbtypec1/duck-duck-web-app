@@ -26,8 +26,11 @@
 
 <script setup lang="ts">
 import type { Contact } from '~/types/contacts'
+import { useWebApp } from 'vue-tg'
 
-const userId = inject(userIdKey)
+const { initDataUnsafe } = useWebApp()
+
+const userId = initDataUnsafe?.user?.id
 
 const runtimeConfig = useRuntimeConfig()
 
