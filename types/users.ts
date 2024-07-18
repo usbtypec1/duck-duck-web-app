@@ -1,4 +1,4 @@
-import type { Gender } from '~/types/genders'
+import type { GenderEnum } from '~/types/genders'
 
 export interface User {
   id: number
@@ -13,7 +13,7 @@ export interface User {
   real_first_name: string | null
   real_last_name: string | null
   patronymic: string | null
-  gender: Gender | null
+  gender: GenderEnum | null
   energy: number
   health: number
 }
