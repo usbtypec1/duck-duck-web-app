@@ -41,10 +41,18 @@
             <p>
               <span class="font-semibold">Имя пользователя:</span> {{ fullname }}</p>
             <p>
-              <span class="font-semibold">Username:</span> <template v-if="username">@</template>{{ username }}
+              <span class="font-semibold">Username:</span>
+              <template v-if="username">@</template>
+              {{ username }}
             </p>
           </section>
         </div>
+      </Fieldset>
+
+      <Fieldset legend="Контакты">
+        <NuxtLink :to="{ name: 'contacts' }">
+          <Button outlined label="Список контактов"/>
+        </NuxtLink>
       </Fieldset>
 
       <Fieldset legend="Личная информация">
@@ -108,7 +116,6 @@
 
 <script setup lang="ts">
 import { useToast } from 'primevue/usetoast'
-import { userIdKey } from '~/utils/dependencies'
 import type { User } from '~/types/users'
 import type { ServerResponse } from '~/types/responses'
 
