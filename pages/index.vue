@@ -93,6 +93,15 @@
             />
           </div>
 
+          <div class="flex flex-col">
+            <label for="gender" class="font-semibold">Пол</label>
+            <Select
+              v-model="gender"
+              label-id="gender"
+              :options="genderOptions" option-label="name" placeholder="Выберите пол"/>
+
+          </div>
+
         </section>
       </Fieldset>
 
@@ -130,6 +139,11 @@ import { useToast } from 'primevue/usetoast'
 import type { User } from '~/types/users'
 import type { ServerResponse } from '~/types/responses'
 
+interface Gender {
+  id: number
+  name: string
+}
+
 const runtimeConfig = useRuntimeConfig()
 
 const { initDataUnsafe } = useWebApp()
@@ -143,6 +157,21 @@ const { data: user, status } = await useFetch<User>(url)
 
 const isSavingRequestPending = ref<boolean>(false)
 
+const genderOptions: Gender[] = [
+  {
+    id: 1,
+    name: 'Женский',
+  },
+  {
+    id: 2,
+    name: 'Мужской',
+  },
+  {
+    id: 3,
+    name: 'Другой',
+  },
+]
+
 const fullname = ref<string>()
 const username = ref<string | null>()
 const realFirstName = ref<string | null>()
@@ -152,6 +181,7 @@ const canBeAddedToContacts = ref<boolean>()
 const canReceiveNotifications = ref<boolean>()
 const profilePhotoUrl = ref<string | null>()
 const bornOn = ref<Date | null>()
+const gender = ref<Gender | null>()
 
 const handleUserResponse = (user: User): void => {
   fullname.value = user.fullname
@@ -163,6 +193,7 @@ const handleUserResponse = (user: User): void => {
   patronymic.value = user.patronymic
   profilePhotoUrl.value = user.profile_photo_url
   bornOn.value = user.born_on ? new Date(user.born_on) : null
+  gender.value = genderOptions.find(genderOption => genderOption.id == user.gender) ?? null
 }
 
 const formatDate = (date: Date): string => {
@@ -190,6 +221,7 @@ const onSaveUser = async () => {
         can_be_added_to_contacts: canBeAddedToContacts.value,
         can_receive_notifications: canReceiveNotifications.value,
         born_on: bornOn.value ? formatDate(bornOn.value) : undefined,
+        gender: gender.value?.id ?? null,
       },
     })
 
