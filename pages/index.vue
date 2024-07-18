@@ -1,6 +1,7 @@
 <template>
   <div>
     <UserProfileUpdateForm
+      v-if="status === 'success'"
       :user="user"
       v-model:realFirstName="realFirstName"
       v-model:realLastName="realLastName"
@@ -11,6 +12,7 @@
       v-model:gender="gender"
       @submit="onSaveUser"
     />
+    <p v-else>Не удалось загрузить информацию о пользователе</p>
   </div>
 </template>
 
