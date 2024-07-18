@@ -49,6 +49,12 @@
         </div>
       </Fieldset>
 
+      <Fieldset legend="Контакты">
+        <NuxtLink :to="{ name: 'contacts' }">
+          <Button outlined label="Список контактов"/>
+        </NuxtLink>
+      </Fieldset>
+
       <Fieldset legend="Личная информация">
         <section class="flex flex-col gap-y-3">
           <div class="flex flex-col">

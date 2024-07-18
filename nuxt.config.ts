@@ -6,6 +6,8 @@ export default defineNuxtConfig({
   modules: ['@primevue/nuxt-module', "@nuxt/image"],
   ssr: false,
 
+  ssr: false,
+
   primevue: {
     options: {
       theme: {
