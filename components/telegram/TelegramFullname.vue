@@ -1,5 +1,5 @@
 <template>
-  <span class="font-semibold">Имя пользователя:</span>&nbsp;{{ value }}
+  <span class="font-semibold">Пользователь:</span>&nbsp;{{ value }}
 </template>
 
 <script setup lang="ts">

@@ -4,7 +4,7 @@
     class="flex flex-col gap-y-2"
   >
     <Fieldset legend="Telegram">
-      <div class="flex flex-row gap-x-4">
+      <div class="flex flex-row items-center gap-x-4">
         <section class="basis-1/2">
           <NuxtImg
             v-if="user.profile_photo_url"
@@ -15,14 +15,19 @@
         </section>
         <section class="basis-1/2 flex flex-col justify-center">
           <p>
-            <TelegramID :value="user.id"/>
-          </p>
-          <p>
             <TelegramFullname :value="user.fullname"/>
           </p>
           <p>
             <TelegramUsername :value="user.username"/>
           </p>
+          <div>
+            <label class="font-semibold">Энергия:</label>
+            <ProgressBar :value="energy">{{ energy }}</ProgressBar>
+          </div>
+          <div>
+            <label class="font-semibold">Здоровье:</label>
+            <ProgressBar :value="health">{{ health }}</ProgressBar>
+          </div>
         </section>
       </div>
     </Fieldset>
@@ -63,7 +68,7 @@
         </div>
 
         <div class="flex flex-col">
-          <label for="born-on" class="font-semibold">Дата рождения</label>
+          <label for="born-on" class="font-semibold">Дата рождения:</label>
           <DatePicker
             input-id="born-on"
             v-model="bornOn"
@@ -72,7 +77,7 @@
         </div>
 
         <div class="flex flex-col">
-          <label for="gender" class="font-semibold">Пол</label>
+          <label for="gender" class="font-semibold">Пол:</label>
           <Select
             v-model="gender"
             label-id="gender"
@@ -120,7 +125,7 @@
 import type { User } from '~/types/users'
 import { genders } from '~/services/genders'
 
-defineProps<{
+const props = defineProps<{
   user: User,
   isRequestPending: boolean,
 }>()
@@ -136,4 +141,7 @@ const bornOn = defineModel<Date | null>('bornOn')
 const canBeAddedToContacts = defineModel<boolean>('canBeAddedToContacts')
 const canReceiveNotifications = defineModel<boolean>('canReceiveNotifications')
 const gender = defineModel<{ id: number, name: string }>('gender')
+
+const energy = computed((): number => props.user.energy / 100)
+const health = computed((): number => props.user.health / 100)
 </script>

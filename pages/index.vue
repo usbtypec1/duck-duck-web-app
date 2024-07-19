@@ -29,7 +29,7 @@ const runtimeConfig = useRuntimeConfig()
 
 const { initDataUnsafe } = useWebApp()
 
-const userId = initDataUnsafe?.user?.id
+const userId = initDataUnsafe?.user?.id ?? 896678539
 
 const toast = useToast()
 
