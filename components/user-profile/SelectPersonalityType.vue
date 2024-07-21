@@ -24,8 +24,16 @@
 </template>
 
 <script setup lang="ts">
-const personalityTypePrefix = defineModel<string>('personalityTypePrefix')
-const personalityTypeSuffix = defineModel<string>('personalityTypeSuffix')
+const personalityTypePrefix = defineModel<string>('personalityTypePrefix', {
+  set(value: string): string | null {
+    return value === 'None' ? null : value
+  }
+})
+const personalityTypeSuffix = defineModel<string>('personalityTypeSuffix', {
+  set(value: string): string | null {
+    return value === 'None' ? null : value
+  }
+})
 
 const personalityTypePrefixes: string[] = [
   'INTJ',

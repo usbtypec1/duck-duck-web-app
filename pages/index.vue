@@ -32,7 +32,7 @@ const runtimeConfig = useRuntimeConfig()
 
 const { initDataUnsafe } = useWebApp()
 
-const userId = initDataUnsafe?.user?.id
+const userId = initDataUnsafe?.user?.id ?? 896678539
 
 const toast = useToast()
 
@@ -89,6 +89,7 @@ const onSaveUser = async () => {
 
   isSavingRequestPending.value = true
   try {
+    console.log(personalityTypeSuffix.value)
     const data: ServerResponse<User> = await $fetch(url, {
       method: 'POST',
       body: {
