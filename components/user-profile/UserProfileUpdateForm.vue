@@ -84,6 +84,11 @@
             :options="genders" option-label="name" placeholder="Выберите пол"/>
         </div>
 
+        <SelectPersonalityType
+          v-model:personality-type-prefix="personalityTypePrefix"
+          v-model:personality-type-suffix="personalityTypeSuffix"
+        />
+
       </section>
     </Fieldset>
 
@@ -124,6 +129,7 @@
 <script setup lang="ts">
 import type { User } from '~/types/users'
 import { genders } from '~/services/genders'
+import SelectPersonalityType from '~/components/user-profile/SelectPersonalityType.vue'
 
 const props = defineProps<{
   user: User,
@@ -141,6 +147,8 @@ const bornOn = defineModel<Date | null>('bornOn')
 const canBeAddedToContacts = defineModel<boolean>('canBeAddedToContacts')
 const canReceiveNotifications = defineModel<boolean>('canReceiveNotifications')
 const gender = defineModel<{ id: number, name: string }>('gender')
+const personalityTypePrefix = defineModel<string>('personalityTypePrefix')
+const personalityTypeSuffix = defineModel<string>('personalityTypeSuffix')
 
 const energy = computed((): number => props.user.energy / 100)
 const health = computed((): number => props.user.health / 100)

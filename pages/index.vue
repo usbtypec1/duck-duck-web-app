@@ -10,7 +10,10 @@
       v-model:canBeAddedToContacts="canBeAddedToContacts"
       v-model:canReceiveNotifications="canReceiveNotifications"
       v-model:gender="gender"
+      v-model:personality-type-prefix="personalityTypePrefix"
+      v-model:personality-type-suffix="personalityTypeSuffix"
       @submit="onSaveUser"
+      :is-request-pending="isSavingRequestPending"
     />
     <p v-else>Не удалось загрузить информацию о пользователе</p>
   </div>
@@ -48,6 +51,8 @@ const canReceiveNotifications = ref<boolean>()
 const profilePhotoUrl = ref<string | null>()
 const bornOn = ref<Date | null>()
 const gender = ref<Gender | null>()
+const personalityTypePrefix = ref<string | null>()
+const personalityTypeSuffix = ref<string | null>()
 
 const handleUserResponse = (user: User): void => {
   fullname.value = user.fullname
@@ -60,6 +65,15 @@ const handleUserResponse = (user: User): void => {
   profilePhotoUrl.value = user.profile_photo_url
   bornOn.value = user.born_on ? new Date(user.born_on) : null
   gender.value = findGenderById(user.gender)
+
+  if (user.personality_type === null) {
+    personalityTypePrefix.value = null
+    personalityTypeSuffix.value = null
+  } else {
+    const [prefix, suffix] = user.personality_type.split('-')
+    personalityTypePrefix.value = prefix
+    personalityTypeSuffix.value = suffix
+  }
 }
 
 const formatDate = (date: Date): string => {
@@ -88,6 +102,8 @@ const onSaveUser = async () => {
         can_receive_notifications: canReceiveNotifications.value,
         born_on: bornOn.value ? formatDate(bornOn.value) : undefined,
         gender: gender.value?.id ?? null,
+        personality_type_prefix: personalityTypePrefix.value,
+        personality_type_suffix: personalityTypeSuffix.value,
       },
     })
 
