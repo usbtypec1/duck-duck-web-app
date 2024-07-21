@@ -15,7 +15,7 @@
       @submit="onSaveUser"
       :is-request-pending="isSavingRequestPending"
     />
-    <p v-else>Не удалось загрузить информацию о пользователе</p>
+    <p v-else>Не удалось загрузить информацию о пользователе: {{ webApp }}</p>
   </div>
 </template>
 
@@ -30,9 +30,9 @@ import { findGenderById } from '~/services/genders'
 
 const runtimeConfig = useRuntimeConfig()
 
-const { initDataUnsafe } = useWebApp()
+const webApp = useWebApp()
 
-const userId = initDataUnsafe?.user?.id
+const userId = webApp?.initDataUnsafe?.user?.id
 
 const toast = useToast()
 
