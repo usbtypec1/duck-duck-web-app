@@ -32,7 +32,7 @@ const runtimeConfig = useRuntimeConfig()
 
 const { initDataUnsafe } = useWebApp()
 
-const userId = initDataUnsafe?.user?.id ?? 896678539
+const userId = initDataUnsafe?.user?.id
 
 const toast = useToast()
 
@@ -101,9 +101,9 @@ const onSaveUser = async () => {
         can_be_added_to_contacts: canBeAddedToContacts.value,
         can_receive_notifications: canReceiveNotifications.value,
         born_on: bornOn.value ? formatDate(bornOn.value) : undefined,
-        gender: gender.value?.id ?? null,
-        personality_type_prefix: personalityTypePrefix.value,
-        personality_type_suffix: personalityTypeSuffix.value,
+        gender: gender.value?.id ?? undefined,
+        personality_type_prefix: personalityTypePrefix.value ?? undefined,
+        personality_type_suffix: personalityTypeSuffix.value ?? undefined,
       },
     })
 
