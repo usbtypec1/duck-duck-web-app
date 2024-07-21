@@ -15,7 +15,7 @@
       @submit="onSaveUser"
       :is-request-pending="isSavingRequestPending"
     />
-    <p v-else>Не удалось загрузить информацию о пользователе: {{ webApp }}<p>{{ window.Telegram }}</p></p>
+    <p v-else>Не удалось загрузить информацию о пользователе</p>
   </div>
 </template>
 
