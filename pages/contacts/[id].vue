@@ -74,7 +74,7 @@ const toast = useToast()
 const confirm = useConfirm()
 
 const runtimeConfig = useRuntimeConfig()
-const url = `${runtimeConfig.public.apiBaseUrl}/contacts/${params.id}`
+const url = `${runtimeConfig.public.apiBaseUrl}/contacts/${params.id}/`
 
 const { data: contact, status } = await useFetch<Contact>(url)
 
