@@ -8,6 +8,10 @@
           v-model="personalityTypePrefix"
           :disabled="disabled"
           :options="personalityTypePrefixes"
+          :option-label="formatPersonalityTypePrefix"
+          option-value="value"
+          filter
+          filter-placeholder="Поиск по названию"
           id="personality-type-prefix"
         />
       </div>
@@ -17,6 +21,8 @@
           v-model="personalityTypeSuffix"
           :disabled="disabled"
           :options="personalityTypeSuffixes"
+          :option-label="formatPersonalityTypeSuffix"
+          option-value="value"
           id="personality-type-suffix"
         />
       </div>
@@ -35,24 +41,101 @@ const personalityTypeSuffix = defineModel<string>('personalityTypeSuffix', {
   default: null,
 })
 
-const personalityTypePrefixes: string[] = [
-  'INTJ',
-  'INTP',
-  'ENTJ',
-  'ENTP',
-  'INFJ',
-  'INFP',
-  'ENFJ',
-  'ENFP',
-  'ISTJ',
-  'ISFJ',
-  'ESTJ',
-  'ESFJ',
-  'ISTP',
-  'ISFP',
-  'ESTP',
-  'ESFP',
+
+interface PersonalityTypePrefix {
+  value: string
+  name: string
+}
+
+
+const formatPersonalityTypePrefix = (personalityTypePrefix: PersonalityTypePrefix): string => {
+  return `${personalityTypePrefix.value} - ${personalityTypePrefix.name}`
+}
+
+const personalityTypePrefixes: PersonalityTypePrefix[] = [
+  {
+    value: 'INTJ',
+    name: 'Стратег',
+  },
+  {
+    value: 'INTP',
+    name: 'Ученый',
+  },
+  {
+    value: 'ENTJ',
+    name: 'Командир',
+  },
+  {
+    value: 'ENTP',
+    name: 'Полемист',
+  },
+  {
+    value: 'INFJ',
+    name: 'Активист',
+  },
+  {
+    value: 'INFP',
+    name: 'Посредник',
+  },
+  {
+    value: 'ENFJ',
+    name: 'Тренер',
+  },
+  {
+    value: 'ENFP',
+    name: 'Борец',
+  },
+  {
+    value: 'ISTJ',
+    name: 'Администратор',
+  },
+  {
+    value: 'ISFJ',
+    name: 'Защитник',
+  },
+  {
+    value: 'ESTJ',
+    name: 'Менеджер',
+  },
+  {
+    value: 'ESFJ',
+    name: 'Консул',
+  },
+  {
+    value: 'ISTP',
+    name: 'Виртуоз',
+  },
+  {
+    value: 'ISFP',
+    name: 'Артист',
+  },
+  {
+    value: 'ESTP',
+    name: 'Делец',
+  },
+  {
+    value: 'ESFP',
+    name: 'Развлекатель',
+  },
 ]
 
-const personalityTypeSuffixes: string[] = ['A', 'T']
+interface PersonalityTypeSuffix {
+  name: string
+  value: string
+}
+
+const formatPersonalityTypeSuffix = (personalityTypeSuffix: PersonalityTypeSuffix): string => {
+  return `${personalityTypeSuffix.value} - ${personalityTypeSuffix.name}`
+}
+
+const personalityTypeSuffixes: PersonalityTypeSuffix[] = [
+  {
+    name: 'Assertive',
+    value: 'A',
+  },
+  {
+    name: 'Turbulent',
+    value: 'T',
+  },
+]
 </script>
