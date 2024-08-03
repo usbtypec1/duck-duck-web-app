@@ -89,7 +89,6 @@ const onSaveUser = async () => {
 
   isSavingRequestPending.value = true
   try {
-    console.log(personalityTypeSuffix.value)
     const data: ServerResponse<User> = await $fetch(url, {
       method: 'POST',
       body: {
