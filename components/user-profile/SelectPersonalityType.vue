@@ -6,6 +6,7 @@
         <label for="personality-type-prefix">Префикс:</label>
         <Select
           v-model="personalityTypePrefix"
+          :disabled="disabled"
           :options="personalityTypePrefixes"
           id="personality-type-prefix"
         />
@@ -14,6 +15,7 @@
         <label for="personality-type-suffix">Суффикс:</label>
         <Select
           v-model="personalityTypeSuffix"
+          :disabled="disabled"
           :options="personalityTypeSuffixes"
           id="personality-type-suffix"
         />
@@ -24,6 +26,8 @@
 </template>
 
 <script setup lang="ts">
+defineProps<{ disabled: boolean }>()
+
 const personalityTypePrefix = defineModel<string>('personalityTypePrefix', {
   default: null,
 })

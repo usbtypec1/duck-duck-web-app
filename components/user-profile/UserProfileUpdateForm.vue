@@ -70,6 +70,7 @@
         <div class="flex flex-col">
           <label for="born-on" class="font-semibold">Дата рождения:</label>
           <DatePicker
+            :disabled="isRequestPending"
             input-id="born-on"
             v-model="bornOn"
             dateFormat="dd/mm/yy"
@@ -81,12 +82,17 @@
           <Select
             v-model="gender"
             label-id="gender"
-            :options="genders" option-label="name" placeholder="Выберите пол"/>
+            :options="genders"
+            :disabled="isRequestPending"
+            option-label="name"
+            placeholder="Выберите пол"
+          />
         </div>
 
         <SelectPersonalityType
           v-model:personality-type-prefix="personalityTypePrefix"
           v-model:personality-type-suffix="personalityTypeSuffix"
+          :disabled="isRequestPending"
         />
 
       </section>
