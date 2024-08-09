@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col gap-y-0.5">
     <p class="font-semibold">Тип личности:</p>
-    <section class="flex gap-x-4">
+    <section class="flex flex-col gap-y-2">
       <div class="flex flex-col basis-2/3">
         <label for="personality-type-prefix">Префикс:</label>
         <Select
