@@ -31,7 +31,6 @@
       </section>
     </div>
     <p v-else>У вас нет контактов</p>
-    <MainButton text="Назад" @click="toMainPage" :progress="isLoadingToMainPage" :visible="true"/>
     <DevOnly>
       <Button
         class="w-full my-3"
@@ -42,6 +41,7 @@
         :loading="isLoadingToMainPage"
       />
     </DevOnly>
+    <MainButton text="Назад" @click="toMainPage" :progress="isLoadingToMainPage"/>
   </div>
 </template>
 
