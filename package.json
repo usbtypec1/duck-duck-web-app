@@ -20,7 +20,9 @@
     "vue-router": "^4.2.5"
   },
   "dependencies": {
+    "@pinia/nuxt": "^0.5.3",
     "@primevue/themes": "^4.0.0",
+    "pinia": "^2.2.1",
     "primevue": "^4.0.0",
     "vue-tg": "^0.6.1"
   }
