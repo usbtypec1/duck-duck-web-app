@@ -31,9 +31,16 @@
       </section>
     </div>
     <p v-else>У вас нет контактов</p>
-    <MainButton text="Назад" @click="toMainPage"/>
+    <MainButton text="Назад" @click="toMainPage" :progress="isLoadingToMainPage"/>
     <DevOnly>
-      <Button class="w-full my-3" @click="toMainPage" severity="secondary" outlined label="Назад"/>
+      <Button
+        class="w-full my-3"
+        @click="toMainPage"
+        severity="secondary"
+        outlined
+        label="Назад"
+        :loading="isLoadingToMainPage"
+      />
     </DevOnly>
   </div>
 </template>
@@ -45,9 +52,18 @@ const { initDataUnsafe } = useWebApp()
 
 const contactsStore = useContactsStore()
 
+const isLoadingToMainPage = ref<boolean>(false)
+
 const userId = initDataUnsafe?.user?.id
 
-const toMainPage = async () => await navigateTo({ name: 'index' })
+const toMainPage = async () => {
+  isLoadingToMainPage.value = true
+  try {
+    await navigateTo({ name: 'index' })
+  } finally {
+    isLoadingToMainPage.value = false
+  }
+}
 
 if (!contactsStore.contacts) {
   await contactsStore.fetchAll(userId)
