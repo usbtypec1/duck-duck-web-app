@@ -1,9 +1,9 @@
 <template>
   <div>
     <div v-if="contactsStore.contacts">
-      <section v-for="contact in contactsStore.contacts" class="my-4">
+      <section v-for="contact in contactsStore.contacts">
         <NuxtLink :to="{ name: 'contacts-id', params: { id: contact.id } }">
-          <div class="flex cursor-pointer">
+          <div class="flex cursor-pointer my-4">
             <div class="basis-1/5">
               <NuxtImg
                 v-if="contact.to_user.profile_photo_url"
