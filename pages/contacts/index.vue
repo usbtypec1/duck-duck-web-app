@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="contactsStore.contacts">
-      <section v-for="contact in contactsStore.contacts" class="my-2">
+      <section v-for="contact in contactsStore.contacts" class="my-4">
         <NuxtLink :to="{ name: 'contacts-id', params: { id: contact.id } }">
           <div class="flex cursor-pointer">
             <div class="basis-1/5">
@@ -31,7 +31,7 @@
       </section>
     </div>
     <p v-else>У вас нет контактов</p>
-    <MainButton text="Назад" @click="toMainPage" :progress="isLoadingToMainPage"/>
+    <MainButton text="Назад" @click="toMainPage" :progress="isLoadingToMainPage" :visible="true"/>
     <DevOnly>
       <Button
         class="w-full my-3"
