@@ -73,16 +73,31 @@ const { params } = useRoute()
 const toast = useToast()
 const confirm = useConfirm()
 
-const runtimeConfig = useRuntimeConfig()
-const url = `${runtimeConfig.public.apiBaseUrl}/contacts/${params.id}/`
-
-const { data: contact, status } = await useFetch<Contact>(url)
+const contactId = parseInt(params.id)
 
 const privateName = ref<string>()
 const publicName = ref<string>()
 const isHidden = ref<boolean>()
 
 const isRequestPending = ref<boolean>(false)
+
+const handleContactResponseData = (contact: Contact): void => {
+  privateName.value = contact.private_name
+  publicName.value = contact.public_name
+  isHidden.value = contact.is_hidden
+}
+
+
+const contactsStore = useContactsStore()
+
+let contact = contactsStore.findContactById(contactId)
+
+if (!contact) {
+  contact = await contactsStore.fetchById(contactId)
+}
+
+handleContactResponseData(contact)
+
 
 const onDeleteContact = (): void => {
   confirm.require({
@@ -103,7 +118,7 @@ const onDeleteContact = (): void => {
 const deleteContact = async (): Promise<void> => {
   isRequestPending.value = true
   try {
-    await $fetch<null>(url, { method: 'DELETE' })
+    await contactsStore.deleteById(contactId)
     toast.add({
       severity: 'warn',
       summary: 'Успешно',
@@ -127,13 +142,11 @@ const deleteContact = async (): Promise<void> => {
 const onSaveContact = async (): Promise<void> => {
   isRequestPending.value = true
   try {
-    await $fetch<Contact>(url, {
-      method: 'PUT',
-      body: {
-        private_name: privateName.value,
-        public_name: publicName.value,
-        is_hidden: isHidden.value,
-      },
+    await contactsStore.updateById({
+      id: contactId,
+      privateName: privateName.value,
+      publicName: publicName.value,
+      isHidden: isHidden.value,
     })
     toast.add({
       severity: 'success',
@@ -152,15 +165,5 @@ const onSaveContact = async (): Promise<void> => {
   } finally {
     isRequestPending.value = false
   }
-}
-
-const handleContactResponseData = (contact: Contact): void => {
-  privateName.value = contact.private_name
-  publicName.value = contact.public_name
-  isHidden.value = contact.is_hidden
-}
-
-if (contact.value !== null) {
-  handleContactResponseData(contact.value)
 }
 </script>

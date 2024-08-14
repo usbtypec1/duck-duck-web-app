@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div v-if="contacts">
-      <section v-for="contact in contacts">
+    <div v-if="contactsStore.contacts">
+      <section v-for="contact in contactsStore.contacts">
         <NuxtLink :to="{ name: 'contacts-id', params: { id: contact.id } }">
           <div class="flex cursor-pointer">
             <div class="basis-1/4">
@@ -30,16 +30,15 @@
 </template>
 
 <script setup lang="ts">
-import type { Contact } from '~/types/contacts'
 import { useWebApp } from 'vue-tg'
 
 const { initDataUnsafe } = useWebApp()
 
+const contactsStore = useContactsStore()
+
 const userId = initDataUnsafe?.user?.id
 
-const runtimeConfig = useRuntimeConfig()
-
-const url = `${runtimeConfig.public.apiBaseUrl}/users/${userId}/contacts/`
-
-const { data: contacts, status } = await useFetch<Contact[]>(url)
+if (!contactsStore.contacts) {
+  await contactsStore.fetchAll(userId)
+}
 </script>

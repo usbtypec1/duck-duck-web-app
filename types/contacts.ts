@@ -9,3 +9,11 @@ export interface Contact {
   created_at: string
   is_hidden: boolean
 }
+
+
+export interface ContactToUpdate {
+  id: number
+  privateName: string
+  publicName: string
+  isHidden: boolean
+}
