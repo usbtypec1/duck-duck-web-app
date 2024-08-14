@@ -31,12 +31,10 @@
       </section>
     </div>
     <p v-else>У вас нет контактов</p>
-    <NuxtLink :to="{ name: 'index' }">
-      <MainButton text="Назад"/>
-      <DevOnly>
-        <Button class="w-full my-3" severity="secondary" outlined label="Назад"/>
-      </DevOnly>
-    </NuxtLink>
+    <MainButton text="Назад" @click="toMainPage"/>
+    <DevOnly>
+      <Button class="w-full my-3" @click="toMainPage" severity="secondary" outlined label="Назад"/>
+    </DevOnly>
   </div>
 </template>
 
@@ -48,6 +46,8 @@ const { initDataUnsafe } = useWebApp()
 const contactsStore = useContactsStore()
 
 const userId = initDataUnsafe?.user?.id
+
+const toMainPage = async () => await navigateTo({ name: 'index' })
 
 if (!contactsStore.contacts) {
   await contactsStore.fetchAll(userId)
