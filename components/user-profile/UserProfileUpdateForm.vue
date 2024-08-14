@@ -120,13 +120,20 @@
       </section>
     </Fieldset>
 
-    <Button
-      class="mt-2 mb-6"
+    <DevOnly>
+      <Button
+        class="mt-2 mb-6"
+        @click="emit('submit')"
+        :loading="isRequestPending"
+        label="Сохранить"
+        type="submit"
+        raised
+      />
+    </DevOnly>
+    <MainButton
       @click="emit('submit')"
-      :loading="isRequestPending"
-      label="Сохранить"
-      type="submit"
-      raised
+      :progress="isRequestPending"
+      text="Сохранить"
     />
   </form>
 
@@ -135,6 +142,7 @@
 <script setup lang="ts">
 import type { User } from '~/types/users'
 import { genders } from '~/services/genders'
+import { MainButton } from 'vue-tg'
 import SelectPersonalityType from '~/components/user-profile/SelectPersonalityType.vue'
 
 const props = defineProps<{
