@@ -5,7 +5,7 @@
       <p class="text-sm text-gray-600">{{ contact.public_name }}</p>
       <p v-if="contact.is_hidden" class="text-xs text-gray-500">Скрыт</p>
     </div>
-    <div class="border-b border-gray-400"></div>
+    <div class="border-b border-gray-200 mr-4 mt-2"></div>
   </div>
 </template>
 
