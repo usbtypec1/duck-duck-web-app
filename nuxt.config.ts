@@ -3,9 +3,7 @@ import Aura from '@primevue/themes/aura'
 
 
 export default defineNuxtConfig({
-  modules: ['@primevue/nuxt-module', "@nuxt/image", "@pinia/nuxt"],
-  ssr: false,
-
+  modules: ['@primevue/nuxt-module', '@nuxt/image', '@pinia/nuxt'],
   ssr: false,
 
   primevue: {
@@ -33,7 +31,10 @@ export default defineNuxtConfig({
     '/': { prerender: true },
   },
 
-  css: ['~/assets/css/main.css'],
+  css: [
+    '~/assets/css/main.css',
+    'primeicons/primeicons.css',
+  ],
   postcss: {
     plugins: {
       tailwindcss: {},
