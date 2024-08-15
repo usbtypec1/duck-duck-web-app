@@ -1,23 +1,21 @@
 <template>
   <div>
-    <div>
-      <ThemeListItem :theme="state"/>
-      <Button
-        class="fixed left-2 top-1/2 opacity-70"
-        icon="pi pi-arrow-left"
-        rounded
-        raised
-        @click="prev()"
-      />
-      <Button
-        class="fixed right-2 top-1/2 opacity-70"
-        size="large"
-        icon="pi pi-arrow-right"
-        rounded
-        raised
-        @click="next()"
-      />
-    </div>
+    <ThemeListItem :theme="state"/>
+    <Button
+      class="fixed left-2 top-1/2 opacity-70"
+      icon="pi pi-arrow-left"
+      rounded
+      raised
+      @click="prev()"
+    />
+    <Button
+      class="fixed right-2 top-1/2 opacity-70"
+      size="large"
+      icon="pi pi-arrow-right"
+      rounded
+      raised
+      @click="next()"
+    />
     <NuxtLink :to="{ name: 'index' }">
       <Button
         class="w-full my-2"
@@ -27,29 +25,20 @@
         icon="pi pi-arrow-left"
       />
     </NuxtLink>
-    <DevOnly>
-      <Button
-        class="w-full"
-        :label="saveButtonText"
-        icon="pi pi-save"
-        raised
-        :disabled="isCurrentTheme"
-        @click="onSaveTheme"
-        :loading="isRequestPending"
-      />
-    </DevOnly>
-    <MainButton
-      :text="saveButtonText"
+    <Button
+      class="w-full"
+      :label="saveButtonText"
+      icon="pi pi-save"
+      raised
       :disabled="isCurrentTheme"
       @click="onSaveTheme"
-      :progress="isRequestPending"
+      :loading="isRequestPending"
     />
   </div>
 </template>
 
 <script setup lang="ts">
 import ThemeListItem from '~/components/themes/ThemeListItem.vue'
-import { MainButton } from 'vue-tg'
 
 const toast = useToast()
 
