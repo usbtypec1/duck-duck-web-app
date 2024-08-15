@@ -43,6 +43,7 @@
                 label="Назад"
                 severity="secondary"
                 class="w-full"
+                icon="pi pi-arrow-left"
               />
             </NuxtLink>
             <Button
@@ -50,11 +51,13 @@
               severity="danger"
               :loading="isRequestPending"
               label="Удалить"
+              icon="pi pi-trash"
             />
             <Button
               @click="onSaveContact"
               :loading="isRequestPending"
               label="Сохранить"
+              icon="pi pi-save"
             />
           </div>
         </section>

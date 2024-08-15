@@ -14,6 +14,7 @@
         severity="secondary"
         outlined
         label="Назад"
+        icon="pi pi-arrow-left"
       />
     </NuxtLink>
   </div>
