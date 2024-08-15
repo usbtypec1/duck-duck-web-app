@@ -13,10 +13,11 @@
       <TransactionListItem :transaction="transaction"/>
     </div>
 
-    <NuxtLink :to="{ name: 'index' }">
-      <Button class="my-4 fixed bottom-5 right-3" raised rounded size="large" icon="pi pi-arrow-left"
-              severity="help"/>
-    </NuxtLink>
+    <div class="fixed bottom-5 right-3">
+      <NuxtLink :to="{ name: 'index' }">
+        <Button class="my-4 " raised rounded size="large" icon="pi pi-arrow-left" severity="help"/>
+      </NuxtLink>
+    </div>
   </div>
 </template>
 
