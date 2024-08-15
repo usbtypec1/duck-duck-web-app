@@ -48,7 +48,7 @@ export const useUserStore = defineStore('userStore', () => {
       }),
     })
     if (!response.ok) {
-      throw new Error(response)
+      throw new Error(`Failed to update user: ${response.statusText}`)
     }
     user.value = response.result
   }
