@@ -31,3 +31,9 @@ export interface UserToUpdate {
   personalityTypePrefix?: string
   personalityTypeSuffix?: string
 }
+
+export interface UserPartial {
+  id: number
+  username: string | null
+  fullname: string
+}
