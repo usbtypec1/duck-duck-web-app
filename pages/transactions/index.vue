@@ -9,9 +9,9 @@
       </p>
     </section>
 
-    <div v-for="transaction in transactionsPage.transactions" :key="transaction.id">
-      <TransactionListItem :transaction="transaction"/>
-    </div>
+    <TransactionList
+      :transactions="transactionsPage.transactions"
+    />
 
     <div class="fixed bottom-5 right-3">
       <NuxtLink :to="{ name: 'index' }">
@@ -23,6 +23,7 @@
 
 <script setup lang="ts">
 import TransactionListItem from '~/components/transactions/TransactionListItem.vue'
+import TransactionList from '~/components/transactions/TransactionList.vue'
 
 const transactionsStore = useTransactionsStore()
 const userStore = useUserStore()
