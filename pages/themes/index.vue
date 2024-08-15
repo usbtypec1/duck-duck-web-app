@@ -1,21 +1,25 @@
 <template>
   <div>
     <ThemeListItem :theme="state"/>
-    <Button
-      class="fixed left-2 top-1/2 opacity-70"
-      icon="pi pi-arrow-left"
-      rounded
-      raised
-      @click="prev()"
-    />
-    <Button
-      class="fixed right-2 top-1/2 opacity-70"
-      size="large"
-      icon="pi pi-arrow-right"
-      rounded
-      raised
-      @click="next()"
-    />
+    <div class="fixed left-2 top-1/2">
+      <Button
+        class="opacity-70"
+        icon="pi pi-arrow-left"
+        rounded
+        raised
+        @click="prev()"
+      />
+    </div>
+    <div class="fixed right-2 top-1/2">
+      <Button
+        class="opacity-70"
+        size="large"
+        icon="pi pi-arrow-right"
+        rounded
+        raised
+        @click="next()"
+      />
+    </div>
     <NuxtLink :to="{ name: 'index' }">
       <Button
         class="w-full my-2"
