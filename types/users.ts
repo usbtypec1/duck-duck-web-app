@@ -17,3 +17,17 @@ export interface User {
   energy: number
   health: number
 }
+
+export interface UserToUpdate {
+  fullname: string
+  username: string | null
+  realFirstName?: string
+  realLastName?: string
+  patronymic?: string
+  canBeAddedToContacts?: boolean
+  canReceiveNotifications?: boolean
+  bornOn?: string
+  gender?: GenderEnum
+  personalityTypePrefix?: string
+  personalityTypeSuffix?: string
+}
