@@ -1,36 +1,51 @@
 <template>
   <section
-    class="flex gap-x-4 snap-x overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide mt-3 mb-1"
+    class="flex gap-x-2.5 snap-x overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide mt-3 mb-1"
   >
-    <NuxtLink :to="{ name: 'contacts' }">
+    <NuxtLink
+      v-for="item in items"
+      :key="item.label"
+      :to="{ name: item.pageName }"
+    >
       <Button
+        :label="item.label"
+        :icon="item.icon"
+        :severity="item.severity"
         outlined
-        label="Контакты"
-        icon="pi pi-users"
-        icon-pos="top"
-        class="scroll-ml-6 snap-start min-w-16"
-        severity="info"
       />
-    </NuxtLink>
-    <NuxtLink :to="{ name: 'transactions' }">
-      <Button
-        outlined
-        label="Переводы"
-        icon="pi pi-money-bill"
-        icon-pos="top"
-        class="scroll-ml-6 snap-start min-w-16"
-        severity="success"
-      />
-    </NuxtLink>
-    <NuxtLink :to="{ name: 'themes' }">
-      <Button
-        outlined
-        label="Темы"
-        icon="pi pi-palette"
-        icon-pos="top"
-        class="scroll-ml-6 snap-start min-w-16"
-        severity="help"
-      />
+
     </NuxtLink>
   </section>
 </template>
+<script setup lang="ts">
+const items = [
+  {
+    label: 'Контакты',
+    icon: 'pi pi-users',
+    severity: 'info',
+    pageName: 'contacts'
+  },
+  {
+    label: 'Переводы',
+    icon: 'pi pi-money-bill',
+    severity: 'success',
+    pageName: 'transactions'
+  },
+  {
+    label: 'Темы',
+    icon: 'pi pi-palette',
+    severity: 'help',
+    pageName: 'themes'
+  },
+  {
+    label: 'Награды',
+    icon: 'pi pi-trophy',
+    severity: 'warn',
+  },
+  {
+    label: 'Секретки',
+    icon: 'pi pi-lock',
+    severity: 'contrast',
+  }
+]
+</script>
