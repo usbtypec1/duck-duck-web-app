@@ -27,6 +27,7 @@ export const useUserStore = defineStore('userStore', () => {
       gender,
       personalityTypePrefix,
       personalityTypeSuffix,
+      themeId,
     }: UserToUpdate) => {
     const url = `${runtimeConfig.public.apiBaseUrl}/users/`
 
@@ -45,6 +46,7 @@ export const useUserStore = defineStore('userStore', () => {
         gender,
         personality_type_prefix: personalityTypePrefix,
         personality_type_suffix: personalityTypeSuffix,
+        theme_id: themeId,
       }),
     })
     if (!response.ok) {

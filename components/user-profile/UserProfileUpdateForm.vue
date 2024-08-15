@@ -51,7 +51,7 @@
           label="Контакты"
           icon="pi pi-users"
           icon-pos="top"
-          class="scroll-ml-6 snap-start"
+          class="scroll-ml-6 snap-start min-w-16"
           severity="info"
         />
       </NuxtLink>
@@ -61,7 +61,17 @@
           label="Переводы"
           icon="pi pi-money-bill"
           icon-pos="top"
-          class="scroll-ml-6 snap-start"
+          class="scroll-ml-6 snap-start min-w-16"
+          severity="success"
+        />
+      </NuxtLink>
+      <NuxtLink :to="{ name: 'themes' }">
+        <Button
+          outlined
+          label="Темы"
+          icon="pi pi-palette"
+          icon-pos="top"
+          class="scroll-ml-6 snap-start min-w-16"
           severity="help"
         />
       </NuxtLink>

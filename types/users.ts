@@ -1,4 +1,5 @@
 import type { GenderEnum } from '~/types/genders'
+import type { Theme } from '~/types/themes'
 
 export interface User {
   id: number
@@ -16,6 +17,7 @@ export interface User {
   gender: GenderEnum | null
   energy: number
   health: number
+  theme: Theme | null
 }
 
 export interface UserToUpdate {
@@ -30,6 +32,7 @@ export interface UserToUpdate {
   gender?: GenderEnum
   personalityTypePrefix?: string
   personalityTypeSuffix?: string
+  themeId?: string
 }
 
 export interface UserPartial {

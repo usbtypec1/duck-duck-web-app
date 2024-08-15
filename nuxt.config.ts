@@ -3,7 +3,7 @@ import Aura from '@primevue/themes/aura'
 
 
 export default defineNuxtConfig({
-  modules: ['@primevue/nuxt-module', '@nuxt/image', '@pinia/nuxt'],
+  modules: ['@primevue/nuxt-module', '@nuxt/image', '@pinia/nuxt', '@vueuse/nuxt'],
   ssr: false,
 
   primevue: {
