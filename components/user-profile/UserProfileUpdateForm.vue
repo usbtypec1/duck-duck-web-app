@@ -22,21 +22,36 @@
           </p>
           <div>
             <label class="font-semibold">Энергия:</label>
-            <ProgressBar :value="energy">{{ energy }}</ProgressBar>
+            <ProgressBar
+              :pt:value:style="energyProgressBarStyle"
+              :value="energy"
+            >
+              {{ energy }}
+            </ProgressBar>
           </div>
           <div>
             <label class="font-semibold">Здоровье:</label>
-            <ProgressBar :value="health">{{ health }}</ProgressBar>
+            <ProgressBar
+              :pt:value:style="healthProgressBarStyle"
+              :value="health"
+            >
+              {{ health }}
+            </ProgressBar>
           </div>
         </section>
       </div>
     </Fieldset>
 
-    <Fieldset legend="Контакты">
+    <section
+      class="flex gap-x-4 snap-x overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide mt-3 mb-1"
+    >
       <NuxtLink :to="{ name: 'contacts' }">
-        <Button outlined label="Список контактов"/>
+        <Button outlined label="Контакты" icon="pi pi-users" class="scroll-ml-6 snap-start"/>
       </NuxtLink>
-    </Fieldset>
+      <NuxtLink :to="{ name: 'transactions' }">
+        <Button outlined label="Переводы" icon="pi pi-money-bill" class="scroll-ml-6 snap-start"/>
+      </NuxtLink>
+    </section>
 
     <Fieldset legend="Личная информация">
       <section class="flex flex-col gap-y-3">
@@ -166,4 +181,11 @@ const personalityTypeSuffix = defineModel<string>('personalityTypeSuffix')
 
 const energy = computed((): number => props.user.energy / 100)
 const health = computed((): number => props.user.health / 100)
+
+const energyProgressBarStyle = computed((): string | undefined => {
+  if (energy.value < 40) return 'background-color: red;'
+})
+const healthProgressBarStyle = computed((): string | undefined => {
+  if (energy.value < 30) return 'background-color: red;'
+})
 </script>
