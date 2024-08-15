@@ -9,8 +9,8 @@
         class="text-gray-500 text-sm"
       >{{ transaction.description }}</p>
     </div>
-    <span v-if="isOutgoing" class="text-red-500 text-md">-{{ renderBalance(transaction.amount) }} коинов</span>
-    <span v-else class="text-green-500 text-md">+{{ renderBalance(transaction.amount) }} коинов</span>
+    <span v-if="isOutgoing" class="text-red-500 text-md text-end">-{{ renderBalance(transaction.amount) }} коинов</span>
+    <span v-else class="text-green-500 text-md text-end">+{{ renderBalance(transaction.amount) }} коинов</span>
   </div>
 </template>
 

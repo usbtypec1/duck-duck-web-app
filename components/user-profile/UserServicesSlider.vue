@@ -10,6 +10,7 @@
       <Button
         :label="item.label"
         :icon="item.icon"
+        icon-pos="top"
         :severity="item.severity"
         outlined
       />
