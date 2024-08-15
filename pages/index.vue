@@ -1,5 +1,7 @@
 <template>
   <div>
+    <UserProfileTelegramInfo :user="userStore.user"/>
+    <UserServicesSlider/>
     <UserProfileUpdateForm
       v-if="userStore.user"
       :user="userStore.user"
@@ -24,6 +26,7 @@ import { useToast } from 'primevue/usetoast'
 import type { User } from '~/types/users'
 import type { Gender } from '~/types/genders'
 import { findGenderById } from '~/services/genders'
+import UserServicesSlider from '~/components/user-profile/UserServicesSlider.vue'
 
 
 const realFirstName = ref<string | null>()
