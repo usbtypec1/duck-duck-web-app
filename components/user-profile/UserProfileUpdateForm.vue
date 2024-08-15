@@ -46,10 +46,24 @@
       class="flex gap-x-4 snap-x overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide mt-3 mb-1"
     >
       <NuxtLink :to="{ name: 'contacts' }">
-        <Button outlined label="Контакты" icon="pi pi-users" class="scroll-ml-6 snap-start"/>
+        <Button
+          outlined
+          label="Контакты"
+          icon="pi pi-users"
+          icon-pos="top"
+          class="scroll-ml-6 snap-start"
+          severity="info"
+        />
       </NuxtLink>
       <NuxtLink :to="{ name: 'transactions' }">
-        <Button outlined label="Переводы" icon="pi pi-money-bill" class="scroll-ml-6 snap-start"/>
+        <Button
+          outlined
+          label="Переводы"
+          icon="pi pi-money-bill"
+          icon-pos="top"
+          class="scroll-ml-6 snap-start"
+          severity="help"
+        />
       </NuxtLink>
     </section>
 
