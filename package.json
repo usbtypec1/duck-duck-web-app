@@ -24,6 +24,7 @@
     "@primevue/themes": "^4.0.0",
     "pinia": "^2.2.1",
     "primevue": "^4.0.0",
+    "tailwind-scrollbar-hide": "^1.1.7",
     "vue-tg": "^0.6.1"
   }
 }
