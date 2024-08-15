@@ -2,7 +2,7 @@
   <NuxtImg
     v-if="contact.to_user.profile_photo_url"
     :src="contact.to_user.profile_photo_url"
-    class="h-16 rounded-full"
+    class="h-16 w-16 rounded-full"
     size="large"
     placeholder
   />
