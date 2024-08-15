@@ -1,6 +1,5 @@
 <template>
   <div>
-    <div class="relative">
     <section
       class="select-none py-4 px-6 w-full h-36 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg flex flex-col justify-between">
       <p class="text-white font-semibold">Ваш баланс:</p>
@@ -15,9 +14,9 @@
     </div>
 
     <NuxtLink :to="{ name: 'index' }">
-      <Button class="my-4 fixed bottom-4 right-3 z-10" raised rounded size="large" icon="pi pi-arrow-left" severity="help"/>
+      <Button class="my-4 fixed bottom-5 right-3" raised rounded size="large" icon="pi pi-arrow-left"
+              severity="help"/>
     </NuxtLink>
-  </div>
   </div>
 </template>
 
