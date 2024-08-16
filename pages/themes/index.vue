@@ -43,6 +43,10 @@
 
 <script setup lang="ts">
 import ThemeListItem from '~/components/themes/ThemeListItem.vue'
+import { useWebAppHapticFeedback } from 'vue-tg'
+
+
+const { notificationOccurred } = useWebAppHapticFeedback()
 
 const toast = useToast()
 
@@ -75,6 +79,7 @@ const onSaveTheme = async () => {
       username: userStore.user.username,
       themeId: state.value.id,
     })
+    notificationOccurred?.('success')
     toast.add({
       severity: 'success',
       summary: 'Успешно',
@@ -82,6 +87,7 @@ const onSaveTheme = async () => {
     })
   } catch (error) {
     console.error(error)
+    notificationOccurred?.('error')
     toast.add({
       severity: 'error',
       summary: 'Ошибка',

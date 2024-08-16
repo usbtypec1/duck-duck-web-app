@@ -22,7 +22,6 @@
 </template>
 
 <script setup lang="ts">
-import TransactionListItem from '~/components/transactions/TransactionListItem.vue'
 import TransactionList from '~/components/transactions/TransactionList.vue'
 
 const transactionsStore = useTransactionsStore()

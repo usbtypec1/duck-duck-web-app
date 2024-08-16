@@ -70,8 +70,11 @@
 import { useToast } from 'primevue/usetoast'
 import { useConfirm } from 'primevue/useconfirm'
 import type { Contact } from '~/types/contacts'
+import { useWebAppHapticFeedback } from 'vue-tg'
 
 const { params } = useRoute()
+
+const { notificationOccurred } = useWebAppHapticFeedback()
 
 const toast = useToast()
 const confirm = useConfirm()
@@ -103,6 +106,7 @@ handleContactResponseData(contact)
 
 
 const onDeleteContact = (): void => {
+  notificationOccurred?.('warning')
   confirm.require({
     header: 'Подтверждение',
     message: 'Вы уверены, что хотите удалить контакт?',
@@ -122,6 +126,7 @@ const deleteContact = async (): Promise<void> => {
   isRequestPending.value = true
   try {
     await contactsStore.deleteById(contactId)
+    notificationOccurred?.('success')
     toast.add({
       severity: 'warn',
       summary: 'Успешно',
@@ -131,6 +136,7 @@ const deleteContact = async (): Promise<void> => {
     await navigateTo({ name: 'contacts' })
   } catch (error) {
     console.error(error)
+    notificationOccurred?.('error')
     toast.add({
       severity: 'error',
       summary: 'Ошибка',
@@ -151,6 +157,7 @@ const onSaveContact = async (): Promise<void> => {
       publicName: publicName.value,
       isHidden: isHidden.value,
     })
+    notificationOccurred?.('success')
     toast.add({
       severity: 'success',
       summary: 'Успешно',
@@ -159,6 +166,7 @@ const onSaveContact = async (): Promise<void> => {
     })
   } catch (error) {
     console.error(error)
+    notificationOccurred?.('error')
     toast.add({
       severity: 'error',
       summary: 'Ошибка',

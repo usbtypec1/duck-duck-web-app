@@ -27,7 +27,10 @@ import type { User } from '~/types/users'
 import type { Gender } from '~/types/genders'
 import { findGenderById } from '~/services/genders'
 import UserServicesSlider from '~/components/user-profile/UserServicesSlider.vue'
+import { useWebAppHapticFeedback } from 'vue-tg'
 
+
+const { notificationOccurred } = useWebAppHapticFeedback()
 
 const realFirstName = ref<string | null>()
 const realLastName = ref<string | null>()
@@ -98,6 +101,7 @@ const onSaveUser = async () => {
         personalityTypeSuffix: personalityTypeSuffix.value ?? undefined,
       })
     handleUserResponse(userStore.user)
+    notificationOccurred?.('success')
     toast.add({
       severity: 'success',
       summary: 'Успешно',
@@ -106,6 +110,7 @@ const onSaveUser = async () => {
     })
   } catch (error) {
     console.error(error)
+    notificationOccurred?.('error')
     toast.add({
       severity: 'error',
       summary: 'Ошибка',
