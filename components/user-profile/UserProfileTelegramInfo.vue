@@ -16,6 +16,9 @@
         <p>
           <TelegramUsername :value="user.username"/>
         </p>
+        <p>
+          <UserPremium :is-premium="user.is_premium"/>
+        </p>
         <div>
           <label class="font-semibold">Энергия:</label>
           <ProgressBar
@@ -42,6 +45,7 @@
 
 <script setup lang="ts">
 import type { User } from '~/types/users'
+import UserPremium from '~/components/user-profile/UserPremium.vue'
 
 const props = defineProps<{
   user: User,
