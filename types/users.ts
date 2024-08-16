@@ -18,6 +18,7 @@ export interface User {
   energy: number
   health: number
   theme: Theme | null
+  is_premium: boolean
 }
 
 export interface UserToUpdate {
