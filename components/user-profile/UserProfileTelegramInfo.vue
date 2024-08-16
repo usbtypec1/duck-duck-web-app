@@ -6,7 +6,7 @@
           v-if="user.profile_photo_url"
           :src="user.profile_photo_url"
           alt="profile photo"
-          class="rounded-full"
+          class="rounded-full aspect-square"
         />
       </section>
       <section class="basis-1/2 flex flex-col justify-center">
