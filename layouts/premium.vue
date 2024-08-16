@@ -18,11 +18,9 @@
 @keyframes backgroundColorAnimation {
   0%,
   100% {
-    transform: rotate(1deg);
     background-position: 0 50%;
   }
   50% {
-    transform: rotate(-1deg);
     background-position: 100% 50%;
   }
 }
