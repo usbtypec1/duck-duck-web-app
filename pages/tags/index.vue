@@ -1,15 +1,11 @@
 <template>
   <div>
     <TagList :tags="tagsStore.tags" />
-    <NuxtLink :to="{ name: 'index' }">
-      <Button
-        class="w-full my-5"
-        severity="secondary"
-        outlined
-        label="Назад"
-        icon="pi pi-arrow-left"
-      />
-    </NuxtLink>
+    <div class="fixed bottom-5 right-3">
+      <NuxtLink :to="{ name: 'index' }">
+        <Button class="my-4" raised rounded size="large" icon="pi pi-arrow-left" severity="warn"/>
+      </NuxtLink>
+    </div>
   </div>
 </template>
 

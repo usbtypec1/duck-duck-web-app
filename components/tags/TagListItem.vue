@@ -10,7 +10,7 @@
 <script setup lang="ts">
 import type { Tag } from '~/types/tags'
 import TagListItemWeightEmoji from '~/components/tags/TagListItemWeightEmoji.vue'
-import { usernameOrFullName } from '../../services/users'
+import { usernameOrFullName } from '~/services/users'
 
 defineProps<{ tag: Tag, tagNumber: number }>()
 </script>
