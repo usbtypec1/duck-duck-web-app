@@ -45,15 +45,15 @@ const items = [
     pageName: 'tags',
   },
   {
-    label: 'Секретки',
-    icon: 'pi pi-lock',
-    severity: 'contrast',
-  },
-  {
     label: 'Премиум',
     icon: 'pi pi-star',
     severity: 'primary',
     pageName: 'premium',
-  }
+  },
+  {
+    label: 'Секретки',
+    icon: 'pi pi-lock',
+    severity: 'contrast',
+  },
 ]
 </script>
