@@ -1,6 +1,6 @@
 <template>
   <section
-    class="flex gap-x-2.5 snap-x overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide mt-3 mb-1"
+    class="flex gap-x-2.5 snap-x overflow-x-scroll overscroll-x-none whitespace-nowrap scroll-smooth scrollbar-hide mt-3 mb-1"
   >
     <NuxtLink
       v-for="item in items"
@@ -48,6 +48,12 @@ const items = [
     label: 'Секретки',
     icon: 'pi pi-lock',
     severity: 'contrast',
+  },
+  {
+    label: 'Премиум',
+    icon: 'pi pi-star',
+    severity: 'primary',
+    pageName: 'premium',
   }
 ]
 </script>
