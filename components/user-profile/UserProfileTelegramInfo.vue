@@ -19,24 +19,8 @@
         <p>
           <UserPremium :is-premium="user.is_premium"/>
         </p>
-        <div>
-          <label class="font-semibold">Энергия:</label>
-          <ProgressBar
-            :pt:value:style="energyProgressBarStyle"
-            :value="energy"
-          >
-            {{ energy }}
-          </ProgressBar>
-        </div>
-        <div>
-          <label class="font-semibold">Здоровье:</label>
-          <ProgressBar
-            :pt:value:style="healthProgressBarStyle"
-            :value="health"
-          >
-            {{ health }}
-          </ProgressBar>
-        </div>
+        <UserEnergyProgressBar :energy="user.energy"/>
+        <UserHealthProgressBar :health="user.health"/>
       </section>
     </div>
   </Fieldset>
@@ -46,18 +30,10 @@
 <script setup lang="ts">
 import type { User } from '~/types/users'
 import UserPremium from '~/components/user-profile/UserPremium.vue'
+import UserEnergyProgressBar from '~/components/user-profile/UserEnergyProgressBar.vue'
+import UserHealthProgressBar from '~/components/user-profile/UserHealthProgressBar.vue'
 
 const props = defineProps<{
   user: User,
 }>()
-
-const energy = computed((): number => props.user.energy / 100)
-const health = computed((): number => props.user.health / 100)
-
-const energyProgressBarStyle = computed((): string | undefined => {
-  if (energy.value < 40) return 'background-color: red;'
-})
-const healthProgressBarStyle = computed((): string | undefined => {
-  if (health.value < 30) return 'background-color: red;'
-})
 </script>

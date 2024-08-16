@@ -42,6 +42,7 @@ const items = [
     label: 'Награды',
     icon: 'pi pi-trophy',
     severity: 'warn',
+    pageName: 'tags',
   },
   {
     label: 'Секретки',
