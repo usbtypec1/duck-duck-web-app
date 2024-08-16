@@ -33,7 +33,7 @@ export const useUserStore = defineStore('userStore', () => {
 
     const response = await $fetch<ServerResponse<User>>(url, {
       method: 'POST',
-      body: JSON.stringify({
+      body: {
         id: userId.value,
         fullname,
         username,
@@ -47,7 +47,7 @@ export const useUserStore = defineStore('userStore', () => {
         personality_type_prefix: personalityTypePrefix,
         personality_type_suffix: personalityTypeSuffix,
         theme_id: themeId,
-      }),
+      },
     })
     if (!response.ok) {
       throw new Error(`Failed to update user: ${response.statusText}`)

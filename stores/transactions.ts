@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import type { TransactionsPage } from '~/types/transactions'
+import type { SystemTransaction, TransactionsPage } from '~/types/transactions'
 import { renderBalance } from '~/services/balance'
 
 export const useTransactionsStore = defineStore('transactionsStore', () => {
@@ -26,10 +26,24 @@ export const useTransactionsStore = defineStore('transactionsStore', () => {
     return renderBalance(balance.value)
   })
 
+  const createDeposit = async ({ amount, description }: { amount: number, description: string }) => {
+    const url = `${runtimeConfig.public.apiBaseUrl}/economics/deposit/`
+
+    return await $fetch<SystemTransaction>(url, {
+      method: 'POST',
+      body: {
+        user_id: userStore.userId,
+        amount,
+        description,
+      },
+    })
+  }
+
   return {
     fetchBalance,
     balance,
     renderedBalance,
     fetchTransactionsPage,
+    createDeposit,
   }
 })

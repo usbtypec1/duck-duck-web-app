@@ -9,6 +9,14 @@ export interface Transaction {
   created_at: string
 }
 
+export interface SystemTransaction {
+  id: string
+  user: UserPartial
+  amount: number
+  description: string | null
+  created_at: string
+}
+
 export interface TransactionsPage {
   transactions: Transaction[]
   is_end_of_list_reached: boolean

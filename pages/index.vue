@@ -1,6 +1,15 @@
 <template>
   <div>
     <UserProfileTelegramInfo :user="userStore.user"/>
+    <Button
+      class="my-3 w-full"
+      outlined
+      label="Получить подарок"
+      rounded
+      icon="pi pi-gift"
+      v-if="isGiftShown"
+      @click="onTakeGift"
+    />
     <UserServicesSlider/>
     <UserProfileUpdateForm
       v-if="userStore.user"
@@ -64,6 +73,7 @@ const handleUserResponse = (user: User): void => {
 }
 
 const userStore = useUserStore()
+const transactionsStore = useTransactionsStore()
 
 if (!userStore.user) {
   await userStore.fetchUser()
@@ -81,6 +91,37 @@ const formatDate = (date: Date): string => {
   const year = date.getFullYear().toString()
 
   return `${year}-${month}-${day}`
+}
+
+const getRandomNumberFrom0To100 = (): number => {
+  return Math.round(Math.random() * 100)
+}
+
+const isGiftShown = ref<boolean>(getRandomNumberFrom0To100() <= 5)
+
+
+const onTakeGift = async () => {
+  isGiftShown.value = false
+  const amount: number = 1000
+  try {
+    await transactionsStore.createDeposit({ amount, description: '🎁 Подарок' })
+    toast.add({
+      severity: 'success',
+      summary: 'Успешно',
+      detail: `Подарок получен (${amount} коинов)`,
+      life: 3000,
+    })
+  } catch (error) {
+    console.error(error)
+    toast.add({
+      severity: 'error',
+      summary: 'Ошибка',
+      detail: 'Не удалось получить подарок',
+      life: 3000,
+    })
+  } finally {
+    isGiftShown.value = false
+  }
 }
 
 const onSaveUser = async () => {
