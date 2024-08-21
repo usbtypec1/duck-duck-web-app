@@ -1,6 +1,6 @@
 <template>
   <section>
-    <NuxtLink :to="{ name: 'contacts-id', params: { id: contact.id } }">
+    <NuxtLink :to="{ name: pageName, params: { id: contact.id } }">
       <div class="flex cursor-pointer gap-x-2">
         <div class="basis-1/5 flex justify-center">
           <ContactsContactListItemAvatar :contact="contact"/>
@@ -18,5 +18,6 @@ import type { Contact } from '~/types/contacts'
 
 defineProps<{
   contact: Contact,
+  pageName: string,
 }>()
 </script>

@@ -54,6 +54,7 @@ const items = [
     label: 'Секретки',
     icon: 'pi pi-lock',
     severity: 'contrast',
+    pageName: 'secret-messages',
   },
 ]
 </script>

@@ -1,4 +1,4 @@
-import type { User } from '~/types/users'
+import type { User, UserPartial } from '~/types/users'
 
 export interface Contact {
   id: number
@@ -10,10 +10,15 @@ export interface Contact {
   is_hidden: boolean
 }
 
-
 export interface ContactToUpdate {
   id: number
   privateName: string
   publicName: string
   isHidden: boolean
+}
+
+export interface ContactPartial {
+  id: number
+  of_user: UserPartial,
+  to_user: UserPartial,
 }

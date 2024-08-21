@@ -5,6 +5,7 @@
         v-for="contact in contactsStore.contacts"
         :key="contact.id"
         :contact="contact"
+        page-name="contacts-id"
       />
     </div>
     <p v-else>У вас нет контактов</p>
@@ -21,16 +22,11 @@
 </template>
 
 <script setup lang="ts">
-import { useWebApp } from 'vue-tg'
 import ContactListItem from '~/components/contacts/ContactListItem.vue'
-
-const { initDataUnsafe } = useWebApp()
 
 const contactsStore = useContactsStore()
 
-const userId = initDataUnsafe?.user?.id
-
 if (!contactsStore.contacts) {
-  await contactsStore.fetchAll(userId)
+  await contactsStore.fetchAll()
 }
 </script>

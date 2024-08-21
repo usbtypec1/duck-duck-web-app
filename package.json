@@ -15,6 +15,7 @@
     "@vueuse/core": "^10.11.1",
     "@vueuse/nuxt": "^10.11.1",
     "autoprefixer": "^10.4.19",
+    "daisyui": "^4.12.10",
     "nuxt": "^3.8.2",
     "postcss": "^8.4.39",
     "tailwindcss": "^3.4.5",
@@ -28,6 +29,7 @@
     "primeicons": "^7.0.0",
     "primevue": "^4.0.0",
     "tailwind-scrollbar-hide": "^1.1.7",
-    "vue-tg": "^0.6.1"
+    "vue-tg": "^0.6.1",
+    "vue3-roulette": "^0.3.3"
   }
 }

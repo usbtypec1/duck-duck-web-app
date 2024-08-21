@@ -4,10 +4,12 @@ import type { Contact, ContactToUpdate } from '~/types/contacts'
 export const useContactsStore = defineStore('contactsStore', () => {
   const contacts = ref<Contact[]>()
 
+  const userStore = useUserStore()
+
   const runtimeConfig = useRuntimeConfig()
 
-  const fetchAll = async (userId: number) => {
-    const url = `${runtimeConfig.public.apiBaseUrl}/users/${userId}/contacts/`
+  const fetchAll = async () => {
+    const url = `${runtimeConfig.public.apiBaseUrl}/users/${userStore.userId}/contacts/`
 
     try {
       contacts.value = await $fetch<Contact[]>(url)
@@ -59,6 +61,10 @@ export const useContactsStore = defineStore('contactsStore', () => {
     return contacts.value?.find((contact) => contact.id === id)
   }
 
+  const notHiddenContacts = computed(() => {
+    return contacts.value?.filter((contact: Contact) => !contact.is_hidden)
+  })
+
   return {
     contacts,
     fetchAll,
@@ -66,5 +72,6 @@ export const useContactsStore = defineStore('contactsStore', () => {
     updateById,
     findContactById,
     fetchById,
+    notHiddenContacts,
   }
 })
