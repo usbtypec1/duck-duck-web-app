@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import type { Contact, ContactToUpdate } from '~/types/contacts'
+import type { Contact, ContactToUpdate, UserContacts } from '~/types/contacts'
 
 export const useContactsStore = defineStore('contactsStore', () => {
   const contacts = ref<Contact[]>()
@@ -9,10 +9,11 @@ export const useContactsStore = defineStore('contactsStore', () => {
   const runtimeConfig = useRuntimeConfig()
 
   const fetchAll = async () => {
-    const url = `${runtimeConfig.public.apiBaseUrl}/users/${userStore.userId}/contacts/`
+    const url = `${runtimeConfig.public.apiBaseUrl}/contacts/users/${userStore.userId}/`
 
     try {
-      contacts.value = await $fetch<Contact[]>(url)
+      const userContacts = await $fetch<UserContacts>(url)
+      contacts.value = userContacts.contacts
     } catch (error) {
       console.error('Error fetching contacts:', error)
     }

@@ -20,15 +20,6 @@
         @click="next()"
       />
     </div>
-    <NuxtLink :to="{ name: 'index' }">
-      <Button
-        class="w-full my-2"
-        severity="secondary"
-        outlined
-        label="Назад"
-        icon="pi pi-arrow-left"
-      />
-    </NuxtLink>
     <Button
       class="w-full"
       :label="saveButtonText"
@@ -38,12 +29,14 @@
       @click="onSaveTheme"
       :loading="isRequestPending"
     />
+    <FloatingCornerButton severity="help" page-name="index"/>
   </div>
 </template>
 
 <script setup lang="ts">
 import ThemeListItem from '~/components/themes/ThemeListItem.vue'
 import { useWebAppHapticFeedback } from 'vue-tg'
+import FloatingCornerButton from '~/components/navigation/FloatingCornerButton.vue'
 
 
 const { notificationOccurred } = useWebAppHapticFeedback()

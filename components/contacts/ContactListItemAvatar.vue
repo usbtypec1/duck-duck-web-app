@@ -1,7 +1,7 @@
 <template>
   <NuxtImg
-    v-if="contact.to_user.profile_photo_url"
-    :src="contact.to_user.profile_photo_url"
+    v-if="contact.user.profile_photo_url"
+    :src="contact.user.profile_photo_url"
     class="aspect-square h-16 w-16 rounded-full"
     size="large"
     placeholder

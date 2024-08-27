@@ -41,3 +41,11 @@ export interface UserPartial {
   username: string | null
   fullname: string
 }
+
+export interface UserPartialWithTheme extends UserPartial {
+  theme: Theme | null
+}
+
+export interface UserPartialWithProfilePhotoUrl extends UserPartial {
+  profile_photo_url: string | null
+}

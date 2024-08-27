@@ -9,20 +9,13 @@
       />
     </div>
     <p v-else>У вас нет контактов</p>
-    <NuxtLink :to="{ name: 'index' }">
-      <Button
-        class="w-full my-5"
-        severity="secondary"
-        outlined
-        label="Назад"
-        icon="pi pi-arrow-left"
-      />
-    </NuxtLink>
+    <FloatingCornerButton severity="info" page-name="index"/>
   </div>
 </template>
 
 <script setup lang="ts">
 import ContactListItem from '~/components/contacts/ContactListItem.vue'
+import FloatingCornerButton from '~/components/navigation/FloatingCornerButton.vue'
 
 const contactsStore = useContactsStore()
 

@@ -1,13 +1,14 @@
-import type { User, UserPartial } from '~/types/users'
+import type { UserPartial, UserPartialWithProfilePhotoUrl, UserPartialWithTheme } from '~/types/users'
+import type { Theme } from '~/types/themes'
 
 export interface Contact {
   id: number
-  of_user: User
-  to_user: User
+  user: UserPartialWithProfilePhotoUrl
   private_name: string
   public_name: string
-  created_at: string
+  theme: Theme | null
   is_hidden: boolean
+  created_at: string
 }
 
 export interface ContactToUpdate {
@@ -21,4 +22,9 @@ export interface ContactPartial {
   id: number
   of_user: UserPartial,
   to_user: UserPartial,
+}
+
+export interface UserContacts {
+  user: UserPartialWithTheme
+  contacts: Contact[]
 }

@@ -5,19 +5,17 @@
         <section class="flex flex-col gap-y-4">
           <div class="flex gap-x-4">
             <div
-              v-if="contact.to_user.profile_photo_url"
+              v-if="contact.user.profile_photo_url"
               class="basis-1/2"
             >
               <NuxtImg
-                :src="contact.to_user.profile_photo_url"
+                :src="contact.user.profile_photo_url"
                 class="rounded-md"
               />
             </div>
             <div>
-              <p><span class="font-semibold">Имя пользователя:</span>&nbsp;{{ contact.to_user.fullname }}</p>
-              <p><span class="font-semibold">Username:</span>
-                <span>&nbsp;<template v-if="contact.to_user.username">@</template>{{ contact.to_user.username }}</span>
-              </p>
+              <TelegramFullname :value="contact.user.fullname" />
+              <TelegramUsername :value="contact.user.username" />
             </div>
           </div>
           <div class="flex flex-col">
