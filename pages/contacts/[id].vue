@@ -38,6 +38,7 @@
             <label for="is-hidden" class="font-semibold">Скрыть</label>
           </div>
           <div>
+            <label for="theme" class="font-semibold">Тема контакта</label>
             <Select
               v-model="themeId"
               :options="themesStore.themes"
