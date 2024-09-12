@@ -16,6 +16,7 @@ export interface ContactToUpdate {
   privateName: string
   publicName: string
   isHidden: boolean
+  themeId: string | null
 }
 
 export interface ContactPartial {

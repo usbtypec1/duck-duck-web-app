@@ -1,7 +1,7 @@
 import type { Theme } from '~/types/themes'
 
 export const useThemesStore = defineStore('themesStore', () => {
-  const themes = ref<Theme[]>([])
+  const themes = ref<Theme[]>()
 
   const runtimeConfig = useRuntimeConfig()
 

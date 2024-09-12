@@ -3,10 +3,9 @@
     <form @submit.prevent>
       <Fieldset legend="Редактирование контакта">
         <section class="flex flex-col gap-y-4">
-          <div class="flex gap-x-4">
+          <div class="flex md:flex-row flex-col gap-y-4">
             <div
               v-if="contact.user.profile_photo_url"
-              class="basis-1/2"
             >
               <NuxtImg
                 :src="contact.user.profile_photo_url"
@@ -14,8 +13,12 @@
               />
             </div>
             <div>
-              <TelegramFullname :value="contact.user.fullname" />
-              <TelegramUsername :value="contact.user.username" />
+              <p>
+                <TelegramFullname :value="contact.user.fullname"/>
+              </p>
+              <p>
+                <TelegramUsername :value="contact.user.username"/>
+              </p>
             </div>
           </div>
           <div class="flex flex-col">
@@ -33,6 +36,16 @@
               :disabled="isRequestPending"
             />
             <label for="is-hidden" class="font-semibold">Скрыть</label>
+          </div>
+          <div>
+            <Select
+              v-model="themeId"
+              :options="themesStore.themes"
+              option-label="secret_message_template_text"
+              option-value="id"
+              empty-message="Нет доступных тем"
+              class="w-full"
+            />
           </div>
 
           <div class="flex flex-col gap-y-3">
@@ -82,6 +95,7 @@ const contactId = parseInt(params.id)
 const privateName = ref<string>()
 const publicName = ref<string>()
 const isHidden = ref<boolean>()
+const themeId = ref<string | null>()
 
 const isRequestPending = ref<boolean>(false)
 
@@ -89,16 +103,23 @@ const handleContactResponseData = (contact: Contact): void => {
   privateName.value = contact.private_name
   publicName.value = contact.public_name
   isHidden.value = contact.is_hidden
+  themeId.value = contact.theme?.id
 }
 
-
 const contactsStore = useContactsStore()
+const themesStore = useThemesStore()
+
 
 let contact = contactsStore.findContactById(contactId)
 
 if (!contact) {
   contact = await contactsStore.fetchById(contactId)
 }
+
+if (themesStore.themes === undefined) {
+  await themesStore.fetchThemes()
+}
+
 
 handleContactResponseData(contact)
 
@@ -154,6 +175,7 @@ const onSaveContact = async (): Promise<void> => {
       privateName: privateName.value,
       publicName: publicName.value,
       isHidden: isHidden.value,
+      themeId: themeId.value,
     })
     notificationOccurred?.('success')
     toast.add({

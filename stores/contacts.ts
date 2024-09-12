@@ -4,6 +4,7 @@ import type { Contact, ContactToUpdate, UserContacts } from '~/types/contacts'
 export const useContactsStore = defineStore('contactsStore', () => {
   const contacts = ref<Contact[]>()
 
+  const themesStore = useThemesStore()
   const userStore = useUserStore()
 
   const runtimeConfig = useRuntimeConfig()
@@ -32,7 +33,7 @@ export const useContactsStore = defineStore('contactsStore', () => {
       privateName,
       publicName,
       isHidden,
-
+      themeId,
     }: ContactToUpdate) => {
     const url = `${runtimeConfig.public.apiBaseUrl}/contacts/${id}/`
     await $fetch(url, {
@@ -41,15 +42,19 @@ export const useContactsStore = defineStore('contactsStore', () => {
         private_name: privateName,
         public_name: publicName,
         is_hidden: isHidden,
+        theme_id: themeId,
       },
     })
 
     const contactToUpdate = contacts.value?.find((contact) => contact.id === id)
 
     if (contactToUpdate) {
+      const theme = themesStore.themes.value?.find((theme) => theme.id === themeId)
+
       contactToUpdate.private_name = privateName
       contactToUpdate.public_name = publicName
       contactToUpdate.is_hidden = isHidden
+      contactToUpdate.theme = theme
     }
   }
 
