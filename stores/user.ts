@@ -16,8 +16,6 @@ export const useUserStore = defineStore('userStore', () => {
 
   const updateUser = async (
     {
-      fullname,
-      username,
       realFirstName,
       realLastName,
       patronymic,
@@ -29,14 +27,16 @@ export const useUserStore = defineStore('userStore', () => {
       personalityTypeSuffix,
       themeId,
     }: UserToUpdate) => {
-    const url = `${runtimeConfig.public.apiBaseUrl}/users/`
+    if (userId.value === undefined) {
+      throw new Error('User is not loaded')
+    }
 
-    const response = await $fetch<ServerResponse<User>>(url, {
-      method: 'POST',
+    const url = `${runtimeConfig.public.apiBaseUrl}/users/${userId.value}/`
+
+    await $fetch(url, {
+      method: 'PUT',
       body: {
         id: userId.value,
-        fullname,
-        username,
         real_first_name: realFirstName,
         real_last_name: realLastName,
         patronymic,
@@ -47,12 +47,9 @@ export const useUserStore = defineStore('userStore', () => {
         personality_type_prefix: personalityTypePrefix,
         personality_type_suffix: personalityTypeSuffix,
         theme_id: themeId,
+        profile_photo_url: user.value?.profile_photo_url ?? null,
       },
     })
-    if (!response.ok) {
-      throw new Error(`Failed to update user: ${response.statusText}`)
-    }
-    user.value = response.result
   }
 
   return {

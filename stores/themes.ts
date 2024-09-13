@@ -7,10 +7,10 @@ export const useThemesStore = defineStore('themesStore', () => {
 
   const fetchThemes = async () => {
     const url = `${runtimeConfig.public.apiBaseUrl}/themes/`
-    const response = await $fetch<{ ok: boolean, result: Theme[] }>(url)
+    const response = await $fetch<Theme[]>(url)
 
-    if (response.ok) {
-      themes.value = response.result
+    if (response) {
+      themes.value = response
     } else {
       throw new Error('Failed to fetch themes')
     }

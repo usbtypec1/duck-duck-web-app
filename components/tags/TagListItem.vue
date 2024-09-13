@@ -3,7 +3,7 @@
     <span>{{ tagNumber }}.&nbsp</span>
     <TagListItemWeightEmoji :weight="tag.weight"/>
     <span>&nbsp{{ tag.text }}</span>
-    <span> ({{ usernameOrFullName({ username: tag.of_user_username, fullname: tag.of_user_fullname }) }})</span>
+    <span> ({{ usernameOrFullName(tag.of_user) }})</span>
   </div>
 </template>
 

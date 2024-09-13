@@ -45,6 +45,7 @@
               option-label="secret_message_template_text"
               option-value="id"
               empty-message="Нет доступных тем"
+              empty-selection-message="Выберите тему"
               class="w-full"
             />
           </div>
@@ -96,7 +97,7 @@ const contactId = parseInt(params.id)
 const privateName = ref<string>()
 const publicName = ref<string>()
 const isHidden = ref<boolean>()
-const themeId = ref<string | null>()
+const themeId = ref<string | null>(null)
 
 const isRequestPending = ref<boolean>(false)
 
@@ -104,7 +105,7 @@ const handleContactResponseData = (contact: Contact): void => {
   privateName.value = contact.private_name
   publicName.value = contact.public_name
   isHidden.value = contact.is_hidden
-  themeId.value = contact.theme?.id
+  themeId.value = contact.theme?.id ?? null
 }
 
 const contactsStore = useContactsStore()

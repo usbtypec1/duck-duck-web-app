@@ -129,18 +129,18 @@ const onSaveUser = async () => {
   try {
     await userStore.updateUser(
       {
-        fullname: userStore.user.fullname,
-        username: userStore.user.username,
         realFirstName: realFirstName.value || '-',
         realLastName: realLastName.value || '-',
         patronymic: patronymic.value || '-',
         canBeAddedToContacts: canBeAddedToContacts.value,
         canReceiveNotifications: canReceiveNotifications.value,
         bornOn: bornOn.value ? formatDate(bornOn.value) : undefined,
-        gender: gender.value?.id ?? undefined,
-        personalityTypePrefix: personalityTypePrefix.value ?? undefined,
-        personalityTypeSuffix: personalityTypeSuffix.value ?? undefined,
+        gender: gender.value?.id,
+        personalityTypePrefix: personalityTypePrefix.value,
+        personalityTypeSuffix: personalityTypeSuffix.value,
+        themeId: userStore.user?.theme?.id,
       })
+    await userStore.fetchUser()
     handleUserResponse(userStore.user)
     notificationOccurred?.('success')
     toast.add({

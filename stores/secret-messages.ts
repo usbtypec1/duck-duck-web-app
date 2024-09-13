@@ -1,5 +1,4 @@
 import type { ContactSecretMessages } from '~/types/secret-messages'
-import type { ServerResponse } from '~/types/responses'
 
 export const useSecretMessagesStore = defineStore('secretMessagesStore', () => {
   const contactIdToContactSecretMessages = ref<Record<number, ContactSecretMessages>>({})
@@ -7,8 +6,8 @@ export const useSecretMessagesStore = defineStore('secretMessagesStore', () => {
   const runtimeConfig = useRuntimeConfig()
 
   const fetchContactSecretMessages = async (contactId: number) => {
-    const url = `${runtimeConfig.public.apiBaseUrl}/secret-messages/contacts/${contactId}/`
-    const serverResponse = await $fetch<ServerResponse<ContactSecretMessages>>(url)
+    const url = `${runtimeConfig.public.apiBaseUrl}/secret-messages/text/contacts/${contactId}/`
+    const serverResponse = await $fetch<ContactSecretMessages>(url)
     contactIdToContactSecretMessages.value[contactId] = serverResponse.result
   }
 

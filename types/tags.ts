@@ -1,3 +1,5 @@
+import type { UserPartial } from '~/types/users'
+
 export enum TagWeight {
   Gold = 1,
   Silver = 2,
@@ -9,6 +11,10 @@ export interface Tag {
   text: string
   weight: TagWeight
   created_at: string
-  of_user_fullname: string
-  of_user_username: string | null
+  of_user: UserPartial
+}
+
+export interface UserTags {
+  user: UserPartial
+  tags: Tag[]
 }

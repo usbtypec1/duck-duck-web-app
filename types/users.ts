@@ -22,8 +22,6 @@ export interface User {
 }
 
 export interface UserToUpdate {
-  fullname: string
-  username: string | null
   realFirstName?: string
   realLastName?: string
   patronymic?: string

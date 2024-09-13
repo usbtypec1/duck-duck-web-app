@@ -50,11 +50,11 @@ const items = [
     severity: 'primary',
     pageName: 'premium',
   },
-  {
-    label: 'Секретки',
-    icon: 'pi pi-lock',
-    severity: 'contrast',
-    pageName: 'secret-messages',
-  },
+  // {
+  //   label: 'Секретки',
+  //   icon: 'pi pi-lock',
+  //   severity: 'contrast',
+  //   pageName: 'secret-messages',
+  // },
 ]
 </script>

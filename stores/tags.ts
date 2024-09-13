@@ -1,5 +1,4 @@
-import type { Tag } from '~/types/tags'
-import type { ServerResponse } from '~/types/responses'
+import type { Tag, UserTags } from '~/types/tags'
 
 export const useTagsStore = defineStore('tagsStore', () => {
   const tags = ref<Tag[]>([])
@@ -9,15 +8,12 @@ export const useTagsStore = defineStore('tagsStore', () => {
   const runtimeConfig = useRuntimeConfig()
 
   const fetchTags = async () => {
-    const url = `${runtimeConfig.public.apiBaseUrl}/users/${userStore.userId}/tags/`
-
-    const tagsResponse = await $fetch<ServerResponse<Tag[]>>(url)
-
-    if (!tagsResponse.ok) {
-      throw new Error('Failed to fetch tags')
-    } else {
-      tags.value = tagsResponse.result
+    if (userStore.userId === undefined) {
+      throw new Error('User ID is not set')
     }
+    const url = `${runtimeConfig.public.apiBaseUrl}/tags/users/${userStore.userId}/`
+    const userTags = await $fetch<UserTags>(url)
+    tags.value = userTags.tags
   }
 
   return {
