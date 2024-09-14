@@ -68,10 +68,16 @@ const onSaveTheme = async () => {
   isRequestPending.value = true
   try {
     await userStore.updateUser({
-      fullname: userStore.user.fullname,
-      username: userStore.user.username,
+      realFirstName: userStore.user.real_first_name,
+      realLastName: userStore.user.real_last_name,
+      patronymic: userStore.user.patronymic,
+      canBeAddedToContacts: userStore.user.can_receive_notifications,
+      canReceiveNotifications: userStore.user.can_receive_notifications,
+      bornOn: userStore.user.born_on,
+      gender: userStore.user.gender,
       themeId: state.value.id,
     })
+    await userStore.fetchUser()
     notificationOccurred?.('success')
     toast.add({
       severity: 'success',
