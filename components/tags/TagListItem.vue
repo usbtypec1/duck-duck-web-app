@@ -1,10 +1,21 @@
 <template>
   <div class="flex justify-between border-b pt-1 pb-3 items-center">
-    <div>
-      <span>{{ tagNumber }}.&nbsp</span>
-      <TagListItemWeightEmoji :weight="tag.weight"/>
-      <span>&nbsp{{ tag.text }}</span>
-      <span> ({{ usernameOrFullName(tag.of_user) }})</span>
+    <div class="flex items-center gap-x-2">
+      <div>
+        <span>{{ tagNumber }}.&nbsp</span>
+      </div>
+      <div>
+        <div>
+          <TagListItemWeightEmoji :weight="tag.weight"/>
+          <span class="font-semibold text-md">&nbsp{{ tag.text }}</span>
+        </div>
+        <div>
+          <span class="text-sm">от {{ usernameOrFullName(tag.of_user) }}</span>
+        </div>
+        <div>
+          <span class="text-xs">{{ formattedCreatedAt }}</span>
+        </div>
+      </div>
     </div>
     <div>
       <Button
@@ -30,6 +41,8 @@ const tagsStore = useTagsStore()
 const toast = useToast()
 
 const confirm = useConfirm()
+
+const formattedCreatedAt = useDateFormat(props.tag.created_at, 'DD MMMM YYYY год, HH:mm (UTC)', { locales: 'ru-RU' })
 
 const onDeleteTag = () => {
   confirm.require({
@@ -57,7 +70,7 @@ const onDeleteTag = () => {
     },
     acceptProps: {
       label: 'Продать',
-      icon: "pi pi-money-bill",
+      icon: 'pi pi-money-bill',
       severity: 'danger',
     },
     rejectProps: {
