@@ -1,18 +1,9 @@
 <template>
-  <NuxtImg
-    v-if="contact.user.profile_photo_url"
-    :src="contact.user.profile_photo_url"
-    class="aspect-square h-16 w-16 rounded-full"
-    size="large"
-    placeholder
+  <Avatar
+    v-bind="avatarProps"
+    shape="circle"
+    size="xlarge"
   />
-  <div
-    v-else
-    :class="[contact.is_hidden ? 'bg-gray-400' : 'bg-emerald-400']"
-    class="aspect-square h-16 w-16 rounded-full flex justify-center items-center"
-  >
-    <p class="font-semibold text-2xl text-white">{{ contact.private_name.at(0).toUpperCase() }}</p>
-  </div>
 </template>
 
 <script setup lang="ts">
@@ -21,4 +12,11 @@ import type { Contact } from '~/types/contacts'
 const props = defineProps<{
   contact: Contact,
 }>()
+
+const avatarProps = computed(() => {
+  if (props.contact.user.profile_photo_url === null) {
+    return { label: props.contact.private_name.at(0).toUpperCase() }
+  }
+  return { image: props.contact.user.profile_photo_url }
+})
 </script>
