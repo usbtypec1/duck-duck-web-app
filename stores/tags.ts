@@ -16,8 +16,20 @@ export const useTagsStore = defineStore('tagsStore', () => {
     tags.value = userTags.tags
   }
 
+  const deleteTag = async (tagId: number) => {
+    const url = `${runtimeConfig.public.apiBaseUrl}/tags/`
+    await $fetch(url, {
+      method: 'DELETE',
+      body: {
+        tag_id: tagId,
+        user_id: userStore.userId,
+      }
+    })
+  }
+
   return {
     tags,
     fetchTags,
+    deleteTag,
   }
 })

@@ -1,16 +1,13 @@
 <template>
   <div>
     <TagList :tags="tagsStore.tags" />
-    <div class="fixed bottom-5 right-3">
-      <NuxtLink :to="{ name: 'index' }">
-        <Button class="my-4" raised rounded size="large" icon="pi pi-arrow-left" severity="warn"/>
-      </NuxtLink>
-    </div>
+    <FloatingCornerButton page-name="index" severity="warn"/>
   </div>
 </template>
 
 <script setup lang="ts">
 import TagList from '~/components/tags/TagList.vue'
+import FloatingCornerButton from '~/components/navigation/FloatingCornerButton.vue'
 
 const tagsStore = useTagsStore()
 

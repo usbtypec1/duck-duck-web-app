@@ -1,10 +1,12 @@
 <template>
-  <TagListItem
-    v-for="(tag, index) in tags"
-    :key="tag.id"
-    :tag-number="index + 1"
-    :tag="tag"
-  />
+  <div class="flex flex-col gap-y-2">
+    <TagListItem
+      v-for="(tag, index) in tags"
+      :key="tag.id"
+      :tag-number="index + 1"
+      :tag="tag"
+    />
+  </div>
 </template>
 
 <script setup lang="ts">
