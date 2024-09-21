@@ -47,7 +47,7 @@ const patronymic = ref<string | null>()
 const canBeAddedToContacts = ref<boolean>()
 const canReceiveNotifications = ref<boolean>()
 const profilePhotoUrl = ref<string | null>()
-const bornOn = ref<Date | null>()
+const bornOn = ref<Date | null>(null)
 const gender = ref<Gender | null>()
 const personalityTypePrefix = ref<string | null>()
 const personalityTypeSuffix = ref<string | null>()
@@ -134,11 +134,11 @@ const onSaveUser = async () => {
         patronymic: patronymic.value || '-',
         canBeAddedToContacts: canBeAddedToContacts.value,
         canReceiveNotifications: canReceiveNotifications.value,
-        bornOn: bornOn.value ? formatDate(bornOn.value) : undefined,
-        gender: gender.value?.id,
+        bornOn: bornOn.value ? formatDate(bornOn.value) : null,
+        gender: gender.value?.id ?? null,
         personalityTypePrefix: personalityTypePrefix.value,
         personalityTypeSuffix: personalityTypeSuffix.value,
-        themeId: userStore.user?.theme?.id,
+        themeId: userStore.user?.theme?.id ?? null,
       })
     await userStore.fetchUser()
     handleUserResponse(userStore.user)
