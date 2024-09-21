@@ -61,7 +61,6 @@ const onError = () => {
 
 const url = computed((): string | undefined => {
   if (!userStore.userId) return
-  // return `${runtimeConfig.public.apiBaseUrl}/users/${userStore.userId}/profile-photos/`
-  return `http://localhost:8000/users/${userStore.userId}/profile-photos/`
+  return `${runtimeConfig.public.apiBaseUrl}/users/${userStore.userId}/profile-photos/`
 })
 </script>
